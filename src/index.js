@@ -59,7 +59,8 @@ function createDrinkCard(drink) {
   newCard.innerHTML =
     `
   <h2>${drink.strDrink}</h2>
-  <p> Drink Type: ${drink.strCategory} - ${drink.strAlcoholic} </p>
+  <span> Drink Type: ${drink.strCategory} </span>
+  <p>${drink.strAlcoholic} </p>
   <img src = '${drink.strDrinkThumb}' class='cocktail-avatar'>
  `
   newLikeButton.addEventListener('click', e => console.log('liked'))
@@ -81,7 +82,7 @@ function handleRecipe(e, drink) {
 
 
   const newRecipeCard = document.createElement('div')
-
+  let ingredientObjArray = []
   for (let ingredientNumber = 1; ingredientNumber <= 15; ingredientNumber++) {
     let findIngredient = drink[`strIngredient${ingredientNumber}`]
     if (findIngredient === null) {
@@ -91,9 +92,13 @@ function handleRecipe(e, drink) {
     if (measureIngredient === null) {
       measureIngredient = ''
     }
-    console.log({ findIngredient, measureIngredient })
+    newObj = {
+      'ingredient': findIngredient,
+      'ingredientAmount': measureIngredient
+    }
+    ingredientObjArray.push(newObj)
   }
-
+  console.log(ingredientObjArray)
   newRecipeCard.innerHTML =
     `
   <h3> Recipe: </h3>
