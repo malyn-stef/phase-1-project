@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <title>BarTinder</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+  <div id="bartinder-header">
+    <h1>barTinder</h1>
+    <img
+      src="https://static.wixstatic.com/media/362b0c_297feae6a55b4e969e47695067e5ab58~mv2.png/v1/fill/w_644,h_630,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/Cheers.png">
+  </div>
+
+  <div class="container">
+    <form class="add-cocktail-form">
+      <h3>Create a Cocktail!</h3>
+
+      <input type="text" name="name" value="" placeholder="Ingredient" class="input-text" />
+      <br />
+      <input type="submit" name="submit" value="Show Me Some Cocktails!" class="submit" />
+    </form>
+    <p class="generate-cocktail">
+
+    <p><button id="rando-cocktail-btn">Generate a Random Cocktail</button></p>
+    </p>
+  </div>
+
+
+  <div id="cocktail-collection"></div>
+  <script type="text/javascript" src="src/index.js"></script>
+</body>
+
+</html>
