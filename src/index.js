@@ -86,7 +86,8 @@ function handleRecipe(e, drink) {
   newRecipeCard.innerHTML =
     `
   <h2>${drink.strDrink}</h2>
-  <p> Recipe: </p>
+  <h3> Recipe: </h3>
+  <p> This drink is best served in a ${drink.strGlass} </p>
   <p>${drink.strInstructions}</p>
   `
   const getOldChild = e.target.parentNode.querySelector('div')
