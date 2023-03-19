@@ -81,7 +81,6 @@ function createDrinkCard(drink) {
 
 function handleRecipe(e, drink) {
 
-
   const newRecipeCard = document.createElement('div')
   let ingredientObjArray = []
 
@@ -115,14 +114,29 @@ function handleRecipe(e, drink) {
   <p>${drink.strInstructions}</p>
   `
 
-  ingredientObjArray.forEach(item => console.log(Object.values(item)))
+
   const getOldChild = e.target.parentNode.querySelector('div')
 
   if (getOldChild === null) {
     e.target.parentNode.append(newRecipeCard)
+    ingredientObjArray.forEach(item => createTable(Object.values(item), e))
   }
   else {
     e.target.parentNode.removeChild(getOldChild)
   }
 
+
+
+}
+
+function createTable(item, e) {
+
+  const getTable = e.target.parentNode.querySelector('table')
+  const newRow = document.createElement('tr')
+  newRow.innerHTML =
+    `
+  <td>${item[0]}</td>
+  <td>${item[1]}</td>
+  `
+  getTable.appendChild(newRow)
 }
