@@ -62,6 +62,7 @@ function createDrinkCard(drink) {
   <span> Drink Type: ${drink.strCategory} </span>
   <p>${drink.strAlcoholic} </p>
   <img src = '${drink.strDrinkThumb}' class='cocktail-avatar'>
+  <br></br>
  `
   newLikeButton.addEventListener('click', e => console.log('liked'))
   newRecipeButton.addEventListener('click', e => handleRecipe(e, drink))
@@ -83,6 +84,7 @@ function handleRecipe(e, drink) {
 
   const newRecipeCard = document.createElement('div')
   let ingredientObjArray = []
+
   for (let ingredientNumber = 1; ingredientNumber <= 15; ingredientNumber++) {
     let findIngredient = drink[`strIngredient${ingredientNumber}`]
     if (findIngredient === null) {
@@ -98,13 +100,22 @@ function handleRecipe(e, drink) {
     }
     ingredientObjArray.push(newObj)
   }
-  console.log(ingredientObjArray)
+
+
   newRecipeCard.innerHTML =
     `
   <h3> Recipe: </h3>
   <p> This drink is best served in a ${drink.strGlass} </p>
+  <table>
+  <tr>
+  <th>Ingredient</th>
+  <th>Amount</th>
+  </tr>
+  </table>
   <p>${drink.strInstructions}</p>
   `
+
+  ingredientObjArray.forEach(item => console.log(Object.values(item)))
   const getOldChild = e.target.parentNode.querySelector('div')
 
   if (getOldChild === null) {
