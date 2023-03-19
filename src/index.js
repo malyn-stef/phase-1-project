@@ -82,10 +82,20 @@ function handleRecipe(e, drink) {
 
   const newRecipeCard = document.createElement('div')
 
+  for (let ingredientNumber = 1; ingredientNumber <= 15; ingredientNumber++) {
+    let findIngredient = drink[`strIngredient${ingredientNumber}`]
+    if (findIngredient === null) {
+      break
+    }
+    let measureIngredient = drink[`strMeasure${ingredientNumber}`]
+    if (measureIngredient === null) {
+      measureIngredient = ''
+    }
+    console.log({ findIngredient, measureIngredient })
+  }
 
   newRecipeCard.innerHTML =
     `
-  <h2>${drink.strDrink}</h2>
   <h3> Recipe: </h3>
   <p> This drink is best served in a ${drink.strGlass} </p>
   <p>${drink.strInstructions}</p>
