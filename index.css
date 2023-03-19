@@ -137,21 +137,11 @@ button:hover {
   justify-self: right;
 }
 
-.card-recipe {
-  justify-self: center;
-  text-align: center;
-  color: #e04b52;
-  text-shadow: 1px 1px #140d27;
-  border: rgb(180, 54, 3) solid 1px;
-  padding: 1rem;
-  width: fit-content;
-  height: 15rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: auto;
-
-
-
-  box-shadow: 3px 4px #211c2e;
-  background-color: rgba(0, 0, 0, 0.377);
+.styled-table {
+  border-collapse: separate;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 200px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }

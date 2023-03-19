@@ -106,7 +106,7 @@ function handleRecipe(e, drink) {
     `
   <h3> Recipe: </h3>
   <p> This drink is best served in a ${drink.strGlass} </p>
-  <table>
+  <table class='styled-table'>
   <tr>
   <th>Ingredient</th>
   <th>Amount</th>
