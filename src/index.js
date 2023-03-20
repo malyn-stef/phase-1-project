@@ -3,7 +3,6 @@ const cocktailCollection = document.querySelector('div#cocktail-collection')
 
 document.addEventListener("DOMContentLoaded", () => {
   const randomGenBtn = document.querySelector("#rando-cocktail-btn");
-  const cocktailFormContainer = document.querySelector(".container");
   const showMeCocktailsBtn = document.querySelector('.submit')
 
   randomGenBtn.addEventListener("click", (e) => {
@@ -36,7 +35,6 @@ function getAllDrinkInfoFromId(drink) {
     .then(res => res.json())
     .then(dataDrink => createDrinkCard(dataDrink["drinks"]['0']))
 
-
 }
 
 function createDrinkCard(drink) {
@@ -66,7 +64,7 @@ function createDrinkCard(drink) {
   <img src = '${drink.strDrinkThumb}' class='cocktail-avatar'>
   <br></br>
  `
-  newLikeButton.addEventListener('click', e => console.log('liked'))
+  newLikeButton.addEventListener('click', e => handleLike(e, drink))
   newRecipeButton.addEventListener('click', e => handleRecipe(e, drink))
   newRemoveButton.addEventListener('click', e => newCard.remove())
 
@@ -144,3 +142,15 @@ function createTable(item, e) {
   getTable.appendChild(newRow)
 }
 
+function handleLike(e, drink) {
+  const getNewSection = document.querySelector('#like-collection')
+  const toAppend = document.createElement('li')
+  const nameForLikeDrink = e.target.parentNode.querySelector('h2').innerText
+  getNewSection.className = 'like-container'
+  toAppend.innerText = nameForLikeDrink
+  getNewSection.appendChild(toAppend)
+
+
+
+
+}

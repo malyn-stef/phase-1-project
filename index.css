@@ -148,3 +148,22 @@ p {
   min-width: 250px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.473);
 }
+
+.hidden {
+  display: none;
+}
+
+.like-container {
+  justify-self: center;
+  font-size: medium;
+  text-align: center;
+  color: rgb(102, 40, 4);
+  text-shadow: 3px 4px #140d27;
+  border: rgb(180, 54, 3) solid 1px;
+  padding: 1rem;
+  width: fit-content;
+  height: fit-content;
+  box-shadow: 3px 4px #211c2e;
+  background-color: rgba(0, 0, 0, 0.377);
+
+}
