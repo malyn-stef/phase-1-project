@@ -167,4 +167,11 @@ function handleLike(e) {
 
 
 }
+function findBySpirit(e) {
 
+  const getCocktailChildren = document.querySelectorAll('div.card')
+
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + e.target.value)
+    .then(res => res.json())
+    .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
+}
