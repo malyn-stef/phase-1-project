@@ -149,6 +149,11 @@ p {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.473);
 }
 
+.remove-btn {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .hidden {
   display: none;
 }
@@ -188,4 +193,27 @@ li {
   justify-self: center;
 
 
+}
+
+.like-container {
+  justify-self: center;
+  font-size: larger;
+  text-align: center;
+  color: rgb(102, 40, 4);
+  text-shadow: 3px 4px #140d27;
+  border: rgb(180, 54, 3) solid 1px;
+  padding: 1rem;
+  width: auto;
+  height: fit-content;
+
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 3px 4px #211c2e;
+  background-color: rgba(0, 0, 0, 0.377);
+
+
+}
+
+.like-container h2 {
+  text-align: center;
 }

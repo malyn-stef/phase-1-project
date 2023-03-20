@@ -4,7 +4,8 @@ const randomGenBtn = document.querySelector("#rando-cocktail-btn");
 const showMeCocktailsBtn = document.querySelector('.submit')
 const dropDownMenuLabel = document.querySelector('label')
 const dropDownMenuOptions = document.querySelector('select')
-
+const getLikeSection = document.querySelector('#input-likes')
+const getLikeContainer = document.querySelector('#like-section')
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -47,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   )
   dropDownMenuOptions.addEventListener('change', e => findBySpirit(e))
+
 });
 
 
@@ -69,7 +71,7 @@ function createDrinkCard(drink) {
   const newRecipeButton = document.createElement('button')
 
   newLikeButton.className = 'card-btn'
-  newRemoveButton.className = 'card-btn'
+  newRemoveButton.className = 'remove-btn'
   newRecipeButton.className = 'card-btn'
 
 
@@ -88,7 +90,12 @@ function createDrinkCard(drink) {
  `
   newLikeButton.addEventListener('click', e => handleLike(e, drink))
   newRecipeButton.addEventListener('click', e => handleRecipe(e, drink))
-  newRemoveButton.addEventListener('click', e => newCard.remove())
+  newRemoveButton.addEventListener('click', e => {
+    newCard.remove()
+    if (getLikeSection.hasChildNodes() !== true) {
+      getLikeContainer.className = 'hidden'
+    }
+  })
 
 
 
@@ -170,7 +177,7 @@ function createTable(item, e) {
 function handleLike(e) {
   const selectedCard = e.target.parentNode
   const likeBtn = selectedCard.querySelector('button')
-  const getLikeSection = document.querySelector('#like-section')
+
 
   if (likeBtn.textContent === 'Liked! ❤️') {
     likeBtn.className = 'card-btn'
@@ -179,10 +186,11 @@ function handleLike(e) {
   } else {
     likeBtn.className = "liked-button"
     likeBtn.textContent = 'Liked! ❤️'
-
-    getLikeSection.className = "container"
-    getLikeSection.textContent = "Your Liked Cocktails!"
+    getLikeContainer.className = "container"
     getLikeSection.prepend(selectedCard)
+  }
+  if (getLikeSection.hasChildNodes() !== true) {
+    getLikeContainer.className = 'hidden'
   }
 
 
