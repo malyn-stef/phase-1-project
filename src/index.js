@@ -17,30 +17,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   showMeCocktailsBtn.addEventListener('click', e => {
     const ingredientForm = document.querySelector("input[name = 'name']")
-    const formRest = document.querySelector("input[placeholder='Ingredient']")
+
     e.preventDefault()
     let ensureCapital = ingredientForm.value.charAt(0).toUpperCase() + ingredientForm.value.slice(1)
 
     if (ensureCapital.includes('berry') === true) {
-      console.log('yes')
-    } else {
-      console.log('no')
+      ensureCapital = ensureCapital.replace('berry', "berries")
     }
 
     if (ensureCapital.includes('Tonic') === true) {
       ensureCapital = 'Tonic_Water'
     } else if (ensureCapital.includes('Soda' === true)) {
       ensureCapital = 'Soda_Water'
+    } else if (ensureCapital.includes('Sparkling')) {
+      ensureCapital = 'Sparkling_Water'
     }
 
     if (ensureCapital.includes(' ') === true) {
       ensureCapital = ensureCapital.replace(' ', "_")
-      console.log(ensureCapital)
     }
 
     fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + ensureCapital)
       .then(res => res.json())
       .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
+      .catch(err => alert('Sorry, cannot find that ingredient, try another one!'))
   }
 
 
@@ -170,6 +170,7 @@ function createTable(item, e) {
 function handleLike(e) {
   const selectedCard = e.target.parentNode
   const likeBtn = selectedCard.querySelector('button')
+  const getLikeSection = document.querySelector('#like-section')
 
   if (likeBtn.textContent === 'Liked! ❤️') {
     likeBtn.className = 'card-btn'
@@ -178,10 +179,10 @@ function handleLike(e) {
     likeBtn.className = "liked-button"
     likeBtn.textContent = 'Liked! ❤️'
   }
-  const findFirstDiv = document.querySelector('div.card')
-  if (selectedCard !== findFirstDiv) {
-    findFirstDiv.parentNode.prepend(selectedCard)
-  }
+
+
+  getLikeSection.prepend(selectedCard)
+
 
 
 }
