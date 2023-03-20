@@ -1,9 +1,12 @@
 
 const cocktailCollection = document.querySelector('div#cocktail-collection')
+const randomGenBtn = document.querySelector("#rando-cocktail-btn");
+const showMeCocktailsBtn = document.querySelector('.submit')
+const dropDownMenuLabel = document.querySelector('label')
+const dropDownMenuOptions = document.querySelector('select')
+
 
 document.addEventListener("DOMContentLoaded", () => {
-  const randomGenBtn = document.querySelector("#rando-cocktail-btn");
-  const showMeCocktailsBtn = document.querySelector('.submit')
 
   randomGenBtn.addEventListener("click", (e) => {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
@@ -25,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   )
+  dropDownMenuOptions.addEventListener('change', e => findBySpirit(e))
 });
 
 
@@ -69,12 +73,14 @@ function createDrinkCard(drink) {
   newRemoveButton.addEventListener('click', e => newCard.remove())
 
 
+
   newCard.append(newLikeButton)
   newCard.append(newRecipeButton)
   newCard.append(newRemoveButton)
 
 
-  cocktailCollection.appendChild(newCard)
+  cocktailCollection.prepend(newCard)
+
 
 
 }
@@ -142,15 +148,30 @@ function createTable(item, e) {
   getTable.appendChild(newRow)
 }
 
-function handleLike(e, drink) {
-  const getNewSection = document.querySelector('#like-collection')
-  const toAppend = document.createElement('li')
-  const nameForLikeDrink = e.target.parentNode.querySelector('h2').innerText
-  getNewSection.className = 'like-container'
-  toAppend.innerText = nameForLikeDrink
-  getNewSection.appendChild(toAppend)
+function handleLike(e) {
+  const selectedCard = e.target.parentNode
+  const likeBtn = selectedCard.querySelector('button')
+
+  if (likeBtn.textContent === 'Liked! ❤️') {
+    likeBtn.className = 'card-btn'
+    likeBtn.textContent = 'Like'
+  } else {
+    likeBtn.className = "liked-button"
+    likeBtn.textContent = 'Liked! ❤️'
+  }
+  const findFirstDiv = document.querySelector('div.card')
+  if (selectedCard !== findFirstDiv) {
+    findFirstDiv.parentNode.prepend(selectedCard)
+  }
 
 
+}
 
+function findBySpirit(e) {
 
+  const getCocktailChildren = document.querySelectorAll('div.card')
+
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + e.target.value)
+    .then(res => res.json())
+    .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
 }

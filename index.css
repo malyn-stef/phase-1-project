@@ -82,7 +82,7 @@ button:hover {
   border: rgb(180, 54, 3) solid 1px;
   padding: 1rem;
   width: auto;
-  height: 15rem;
+  height: fit-content;
 
   margin-left: auto;
   margin-right: auto;
@@ -154,16 +154,38 @@ p {
 }
 
 .like-container {
+
   justify-self: center;
   font-size: medium;
-  text-align: center;
+  text-align: justify;
+  text-overflow: initial;
   color: rgb(102, 40, 4);
   text-shadow: 3px 4px #140d27;
   border: rgb(180, 54, 3) solid 1px;
   padding: 1rem;
-  width: fit-content;
+  width: auto;
   height: fit-content;
   box-shadow: 3px 4px #211c2e;
   background-color: rgba(0, 0, 0, 0.377);
+  margin-right: 5px;
+
+}
+
+li {
+  width: max-content;
+  margin-block-end: auto;
+}
+
+.liked-button {
+  position: relative;
+
+  background-color: rgb(10, 4, 0);
+  border-radius: 5px;
+  height: 2rem;
+  width: max-content;
+  color: whitesmoke;
+  font-size: 18px;
+  justify-self: center;
+
 
 }
