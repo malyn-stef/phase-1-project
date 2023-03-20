@@ -179,11 +179,11 @@ function handleLike(e) {
   } else {
     likeBtn.className = "liked-button"
     likeBtn.textContent = 'Liked! ❤️'
+
+    getLikeSection.className = "container"
+    getLikeSection.textContent = "Your Liked Cocktails!"
     getLikeSection.prepend(selectedCard)
   }
-
-
-
 
 
 
