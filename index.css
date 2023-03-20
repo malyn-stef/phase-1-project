@@ -26,14 +26,14 @@ body {
 }
 
 .card {
-  justify-self: center;
+  justify-items: center;
   text-align: left;
   color: #aa3e2a;
   text-shadow: 1px 1px #140d27;
   border: rgb(180, 54, 3) solid 1px;
   padding: 1rem;
-  width: 275px;
-  height: fit-content;
+  width: 250px;
+  height: max-content;
   display: inline-grid;
   margin: 1rem 2rem;
   box-shadow: 3px 4px #211c2e;
@@ -158,23 +158,6 @@ p {
   display: none;
 }
 
-.like-container {
-
-  justify-self: center;
-  font-size: medium;
-  text-align: justify;
-  text-overflow: initial;
-  color: rgb(102, 40, 4);
-  text-shadow: 3px 4px #140d27;
-  border: rgb(180, 54, 3) solid 1px;
-  padding: 1rem;
-  width: auto;
-  height: fit-content;
-  box-shadow: 3px 4px #211c2e;
-  background-color: rgba(0, 0, 0, 0.377);
-  margin-right: 5px;
-
-}
 
 li {
   width: max-content;
