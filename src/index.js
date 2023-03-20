@@ -175,13 +175,15 @@ function handleLike(e) {
   if (likeBtn.textContent === 'Liked! ❤️') {
     likeBtn.className = 'card-btn'
     likeBtn.textContent = 'Like'
+    cocktailCollection.prepend(selectedCard)
   } else {
     likeBtn.className = "liked-button"
     likeBtn.textContent = 'Liked! ❤️'
+    getLikeSection.prepend(selectedCard)
   }
 
 
-  getLikeSection.prepend(selectedCard)
+
 
 
 
