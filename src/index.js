@@ -18,9 +18,27 @@ document.addEventListener("DOMContentLoaded", () => {
   showMeCocktailsBtn.addEventListener('click', e => {
     const ingredientForm = document.querySelector("input[name = 'name']")
     const formRest = document.querySelector("input[placeholder='Ingredient']")
-
     e.preventDefault()
-    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + ingredientForm.value)
+    let ensureCapital = ingredientForm.value.charAt(0).toUpperCase() + ingredientForm.value.slice(1)
+
+    if (ensureCapital.includes('berry') === true) {
+      console.log('yes')
+    } else {
+      console.log('no')
+    }
+
+    if (ensureCapital.includes('Tonic') === true) {
+      ensureCapital = 'Tonic_Water'
+    } else if (ensureCapital.includes('Soda' === true)) {
+      ensureCapital = 'Soda_Water'
+    }
+
+    if (ensureCapital.includes(' ') === true) {
+      ensureCapital = ensureCapital.replace(' ', "_")
+      console.log(ensureCapital)
+    }
+
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + ensureCapital)
       .then(res => res.json())
       .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
   }
@@ -168,10 +186,17 @@ function handleLike(e) {
 
 }
 function findBySpirit(e) {
-
+  console.log(e.target.value)
   const getCocktailChildren = document.querySelectorAll('div.card')
 
-  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + e.target.value)
-    .then(res => res.json())
-    .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
+  if (e.target.value === 'Non_Alcoholic') {
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=' + e.target.value)
+      .then(res => res.json())
+      .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
+  } else {
+
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + e.target.value)
+      .then(res => res.json())
+      .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
+  }
 }
