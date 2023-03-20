@@ -6,9 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cocktailFormContainer = document.querySelector(".container");
   const showMeCocktailsBtn = document.querySelector('.submit')
 
-
-
-
   randomGenBtn.addEventListener("click", (e) => {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
       .then(res => res.json())
@@ -18,15 +15,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   showMeCocktailsBtn.addEventListener('click', e => {
     const ingredientForm = document.querySelector("input[name = 'name']")
-    e.preventDefault()
+    const formRest = document.querySelector("input[placeholder='Ingredient']")
 
+    e.preventDefault()
     fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + ingredientForm.value)
       .then(res => res.json())
       .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
   }
-  )
 
+
+
+  )
 });
+
+
 
 function getAllDrinkInfoFromId(drink) {
 
@@ -97,6 +99,7 @@ function handleRecipe(e, drink) {
       'ingredient': findIngredient,
       'ingredientAmount': measureIngredient
     }
+
     ingredientObjArray.push(newObj)
   }
 
@@ -140,3 +143,4 @@ function createTable(item, e) {
   `
   getTable.appendChild(newRow)
 }
+
