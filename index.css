@@ -21,6 +21,14 @@ body {
 
 }
 
+h2 {
+  color: rgb(180, 54, 3)
+}
+
+label {
+  color: rgb(180, 54, 3)
+}
+
 #cocktail-collection {
   margin: 2rem;
 }
