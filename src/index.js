@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + ensureCapital)
       .then(res => res.json())
       .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
-      .catch(err => alert('Sorry, cannot find that ingredient, try another one!'))
+      .catch(err => alert('Sorry, cannot find that cocktail, try another one!'))
   })
 
 
