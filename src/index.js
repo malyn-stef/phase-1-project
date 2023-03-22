@@ -8,8 +8,11 @@ const dropDownMenuOptions = document.querySelector('select')
 const getLikeSection = document.querySelector('#input-likes')
 const getLikeContainer = document.querySelector('#like-section')
 
+
+// dom event listener
 document.addEventListener("DOMContentLoaded", () => {
 
+  // random btn EL
   randomGenBtn.addEventListener("click", (e) => {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
       .then(res => res.json())
@@ -18,35 +21,36 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-
+  // cocktails by name EL
   showMeCocktailsByNameBtn.addEventListener('click', e => {
-    const ingredientForm = document.querySelector("input[name = 'cocktail-name']")
+    const cocktailForm = document.querySelector("input[name = 'cocktail-name']")
 
     e.preventDefault()
 
-    let ensureCapital = ingredientForm.value.charAt(0).toUpperCase() + ingredientForm.value.slice(1)
+    let ensureCapital = cocktailForm.value.charAt(0).toUpperCase() + cocktailForm.value.slice(1)
 
-
+    // verify user input can be used in API
     if (ensureCapital.includes(' ') === true) {
       ensureCapital = ensureCapital.replaceAll(' ', "_")
-      console.log(ensureCapital)
     }
 
     fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + ensureCapital)
       .then(res => res.json())
       .then(someDrink => someDrink['drinks'].forEach(drink => createDrinkCard(drink)))
       .catch(err => alert('Sorry, cannot find that cocktail, try another one!'))
+    cocktailForm.value = ''
   })
 
 
 
-
+  // ingredient EL
   showMeCocktailsBtn.addEventListener('click', e => {
     const ingredientForm = document.querySelector("input[name = 'ingredient']")
 
     e.preventDefault()
 
     let ensureCapital = ingredientForm.value.charAt(0).toUpperCase() + ingredientForm.value.slice(1)
+    //Verify user input
 
     if (ensureCapital.includes('berry') === true && ensureCapital.includes(' ') !== false) {
       ensureCapital = ensureCapital.replace('berry', "berries")
@@ -62,20 +66,21 @@ document.addEventListener("DOMContentLoaded", () => {
       ensureCapital = ensureCapital.replaceAll(' ', "_")
 
     }
-    console.log(ensureCapital)
+
     fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + ensureCapital)
       .then(res => res.json())
       .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
       .catch(err => alert('Sorry, cannot find that ingredient, try another one!'))
-
+    ingredientForm.value = ''
   }
+
 
 
 
 
   )
 
-
+  //drop down form EL
   dropDownMenuOptions.addEventListener('change', e => {
     if (e.target.value === 'Non_Alcoholic') {
       fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=' + e.target.value)
@@ -93,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ;
 
 
-
+// gets id and generates full drink information
 function getAllDrinkInfoFromId(drink) {
 
   fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + drink)
@@ -102,9 +107,12 @@ function getAllDrinkInfoFromId(drink) {
 
 }
 
+
+//create drink cards
 function createDrinkCard(drink) {
 
   const newCard = document.createElement('div')
+  const removeAllCocktailsBtn = document.querySelector('#remove-cocktails')
 
   const newLikeButton = document.createElement('button')
   const newRemoveButton = document.createElement('button')
@@ -113,7 +121,7 @@ function createDrinkCard(drink) {
   newLikeButton.className = 'card-btn'
   newRemoveButton.className = 'remove-btn'
   newRecipeButton.className = 'card-btn'
-
+  removeAllCocktailsBtn.className = ''
 
   newLikeButton.textContent = 'Like'
   newRecipeButton.textContent = 'Cocktail Recipe'
@@ -128,12 +136,20 @@ function createDrinkCard(drink) {
   <img src = '${drink.strDrinkThumb}' class='cocktail-avatar'>
   <br></br>
  `
+
+  //btn ELs
   newLikeButton.addEventListener('click', e => handleLike(e, drink))
   newRecipeButton.addEventListener('click', e => handleRecipe(e, drink))
   newRemoveButton.addEventListener('click', e => {
     newCard.remove()
     if (getLikeSection.hasChildNodes() !== true) {
       getLikeContainer.className = 'hidden'
+    }
+  })
+  removeAllCocktailsBtn.addEventListener('click', e => {
+    while (cocktailCollection.firstChild) {
+      cocktailCollection.removeChild(cocktailCollection.firstChild)
+      removeAllCocktailsBtn.className = 'hidden'
     }
   })
 
@@ -228,11 +244,7 @@ function handleLike(e) {
     likeBtn.className = "liked-button"
     likeBtn.textContent = 'Liked! ❤️'
     getLikeContainer.className = "container"
-    const createSpan = document.createElement('span')
-    createSpan.appendChild(selectedCard)
-    createSpan.className = 'hidden'
-    getLikeSection.prepend(createSpan)
-    console.log(createSpan)
+    getLikeSection.prepend(selectedCard)
 
   }
   if (getLikeSection.hasChildNodes() !== true) {
