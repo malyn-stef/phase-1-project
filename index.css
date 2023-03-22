@@ -35,7 +35,7 @@ label {
 
 .card {
   justify-items: center;
-  text-align: left;
+  text-align: center;
   color: #aa3e2a;
   text-shadow: 1px 1px #140d27;
   border: rgb(180, 54, 3) solid 1px;
@@ -166,6 +166,9 @@ p {
   display: none;
 }
 
+span div h2 {
+  display: contents;
+}
 
 li {
   width: max-content;

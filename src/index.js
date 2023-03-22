@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(dataDrink => createDrinkCard(dataDrink["drinks"]['0']))
 
   });
+
+
+
   showMeCocktailsByNameBtn.addEventListener('click', e => {
     const ingredientForm = document.querySelector("input[name = 'cocktail-name']")
 
@@ -34,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(someDrink => someDrink['drinks'].forEach(drink => createDrinkCard(drink)))
       .catch(err => alert('Sorry, cannot find that cocktail, try another one!'))
   })
+
+
 
 
   showMeCocktailsBtn.addEventListener('click', e => {
@@ -69,9 +74,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   )
-  dropDownMenuOptions.addEventListener('change', e => findBySpirit(e))
 
-});
+
+  dropDownMenuOptions.addEventListener('change', e => {
+    if (e.target.value === 'Non_Alcoholic') {
+      fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=' + e.target.value)
+        .then(res => res.json())
+        .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
+    } else {
+
+      fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + e.target.value)
+        .then(res => res.json())
+        .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
+    }
+  }
+  )
+})
+  ;
 
 
 
@@ -104,7 +123,7 @@ function createDrinkCard(drink) {
   newCard.innerHTML =
     `
   <h2>${drink.strDrink}</h2>
-  <span> Drink Type: ${drink.strCategory} </span>
+  Drink Type: ${drink.strCategory}
   <p>${drink.strAlcoholic} </p>
   <img src = '${drink.strDrinkThumb}' class='cocktail-avatar'>
   <br></br>
@@ -164,7 +183,8 @@ function handleRecipe(e, drink) {
   <th>Amount</th>
   </tr>
   </table>
-  <p>${drink.strInstructions}</p>
+  <p>${drink.strInstructions}</p> 
+ 
   `
 
 
@@ -208,7 +228,12 @@ function handleLike(e) {
     likeBtn.className = "liked-button"
     likeBtn.textContent = 'Liked! ❤️'
     getLikeContainer.className = "container"
-    getLikeSection.prepend(selectedCard)
+    const createSpan = document.createElement('span')
+    createSpan.appendChild(selectedCard)
+    createSpan.className = 'hidden'
+    getLikeSection.prepend(createSpan)
+    console.log(createSpan)
+
   }
   if (getLikeSection.hasChildNodes() !== true) {
     getLikeContainer.className = 'hidden'
@@ -217,20 +242,6 @@ function handleLike(e) {
 
 
 }
-function findBySpirit(e) {
-  console.log(e.target.value)
 
-
-  if (e.target.value === 'Non_Alcoholic') {
-    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=' + e.target.value)
-      .then(res => res.json())
-      .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
-  } else {
-
-    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + e.target.value)
-      .then(res => res.json())
-      .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
-  }
-}
 
 
