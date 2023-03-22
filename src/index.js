@@ -52,14 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let ensureCapital = ingredientForm.value.charAt(0).toUpperCase() + ingredientForm.value.slice(1)
     //Verify user input
 
-    if (ensureCapital.includes('berry') === true && ensureCapital.includes(' ') !== false) {
+    if (ensureCapital.includes('berry') === true && ensureCapital.includes(' ') === false) {
       ensureCapital = ensureCapital.replace('berry', "berries")
     }
+    console.log(ensureCapital)
 
     if (ensureCapital.includes('Tonic') === true) {
       ensureCapital = 'Tonic_Water'
-    } else if (ensureCapital.includes('Soda' === true)) {
-      ensureCapital = 'Soda_Water'
+    } else if (ensureCapital.includes(' water' === true)) {
+      ensureCapital = ensureCapital + '_Water'
     }
 
     if (ensureCapital.includes(' ') === true) {
