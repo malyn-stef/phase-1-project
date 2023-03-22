@@ -30,7 +30,8 @@ label {
 }
 
 #cocktail-collection {
-  margin: 2rem;
+  display: contents;
+  justify-content: center;
 }
 
 
@@ -64,7 +65,7 @@ label {
 }
 
 .group {
-  display: grid;
+  display: contents;
   justify-content: center;
 }
 
@@ -220,5 +221,5 @@ li {
 }
 
 #remove-cocktails {
-  justify-self: right;
+  position: re
 }

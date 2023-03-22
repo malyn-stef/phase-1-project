@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.json())
         .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
     }
+
   }
   )
 })
@@ -110,6 +111,8 @@ function getAllDrinkInfoFromId(drink) {
 
 //create drink cards
 function createDrinkCard(drink) {
+
+
 
   const newCard = document.createElement('div')
   const removeAllCocktailsBtn = document.querySelector('#remove-cocktails')
@@ -158,6 +161,9 @@ function createDrinkCard(drink) {
   newCard.append(newLikeButton)
   newCard.append(newRecipeButton)
   newCard.append(newRemoveButton)
+
+
+
 
 
   cocktailCollection.prepend(newCard)
