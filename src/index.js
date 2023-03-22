@@ -85,7 +85,6 @@ function getAllDrinkInfoFromId(drink) {
 
 function createDrinkCard(drink) {
 
-
   const newCard = document.createElement('div')
 
   const newLikeButton = document.createElement('button')
