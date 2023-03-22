@@ -208,3 +208,7 @@ li {
 .like-container h2 {
   text-align: center;
 }
+
+#clear-cocktails-btn {
+  justify-content: right;
+}

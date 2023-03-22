@@ -15,29 +15,42 @@
   </div>
 
   <div class="container">
-    <form class="add-cocktail-form">
-      <h2>Find a Cocktail!</h2>
 
-      <label name="spirit-names" class="">Find by type of Spirit: </label>
-      <br></br>
-      <select name="spirit-names" class="">
-        <option value="" id="spirit-names">Choose one:</option>
-        <option value="Vodka" id="spirit-names">Vodka</option>
-        <option value="Gin" id="spirit-names">Gin</option>
-        <option value="Whiskey" id="spirit-names">Whiskey</option>
-        <option value="Bourbon" id="spirit-names">Bourbon</option>
-        <option value="Rum" id="spirit-names">Rum</option>
-        <option value="Brandy" id="spirit-names">Brandy</option>
-        <option value="Non_Alcoholic" id="spirit-names">Non-Alcoholic</option>
-      </select>
+    <h2>Find a Cocktail!</h2>
+    <label name="spirit-names" class="">Find by type of Spirit: </label>
+    <br></br>
+    <select name="spirit-names" class="">
+      <option value="" id="spirit-names">Choose one:</option>
+      <option value="Vodka" id="spirit-names">Vodka</option>
+      <option value="Gin" id="spirit-names">Gin</option>
+      <option value="Whiskey" id="spirit-names">Whiskey</option>
+      <option value="Bourbon" id="spirit-names">Bourbon</option>
+      <option value="Rum" id="spirit-names">Rum</option>
+      <option value="Brandy" id="spirit-names">Brandy</option>
+      <option value="Non_Alcoholic" id="spirit-names">Non-Alcoholic</option>
+    </select>
+    <br></br>
+    <form class="add-cocktail-form"></form>
+    <label name="spirit-names" class="">Search by Cocktail: </label>
+    <br>
 
-      <br></br>
-      <label name="spirit-names" class="">Search by Ingredient: </label>
-      <br>
-      <input type="text" name="name" value="" placeholder="Ingredient" class="input-text" />
-      <br />
-      <input type="submit" name="submit" value="Show Me Some Cocktails!" class="submit" />
+
+    <input type="text" name="cocktail-name" value="" placeholder="Name of cocktail" class="input-text" />
+    <br />
+    <input type="submit" name="submit-cocktailname" value="Show Me Some Cocktails!" class="submit" />
     </form>
+    <p class="generate-cocktail">
+
+
+    <form class="add-cocktail-form"></form>
+    <label name="spirit-names" class="">Search by Ingredient: </label>
+    <br>
+    <input type="text" name="ingredient" value="" placeholder="Ingredient" class="input-text" />
+    <br />
+    <input type="submit" name="submit-ingredient" value="Show Me Some Cocktails!" class="submit" />
+    </form>
+    <br></br>
+    <label name="spirit-names" class="">Generate a Random Cocktail: </label>
     <p class="generate-cocktail">
 
     <p><button id="rando-cocktail-btn">Generate a Random Cocktail</button></p>
@@ -50,7 +63,10 @@
       <h2>Your Liked Cocktails</h2>
       <div id="input-likes"></div>
     </div>
+    <br></br>
+    <button id="clear-cocktails-btn" class="hidden">Clear Cocktails</button>
     <div id="cocktail-collection"></div>
+  </div>
   </div>
 </body>
 <script type="text/javascript" src="src/index.js"></script>

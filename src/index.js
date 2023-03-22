@@ -1,7 +1,8 @@
 
 const cocktailCollection = document.querySelector('div#cocktail-collection')
 const randomGenBtn = document.querySelector("#rando-cocktail-btn");
-const showMeCocktailsBtn = document.querySelector('.submit')
+const showMeCocktailsBtn = document.querySelector('.submit[name="submit-ingredient"]')
+const showMeCocktailsByNameBtn = document.querySelector('.submit[name="submit-cocktailname"]')
 const dropDownMenuLabel = document.querySelector('label')
 const dropDownMenuOptions = document.querySelector('select')
 const getLikeSection = document.querySelector('#input-likes')
@@ -15,14 +16,34 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(dataDrink => createDrinkCard(dataDrink["drinks"]['0']))
 
   });
-
-  showMeCocktailsBtn.addEventListener('click', e => {
-    const ingredientForm = document.querySelector("input[name = 'name']")
+  showMeCocktailsByNameBtn.addEventListener('click', e => {
+    const ingredientForm = document.querySelector("input[name = 'cocktail-name']")
 
     e.preventDefault()
+
     let ensureCapital = ingredientForm.value.charAt(0).toUpperCase() + ingredientForm.value.slice(1)
 
-    if (ensureCapital.includes('berry') === true) {
+
+    if (ensureCapital.includes(' ') === true) {
+      ensureCapital = ensureCapital.replaceAll(' ', "_")
+      console.log(ensureCapital)
+    }
+
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + ensureCapital)
+      .then(res => res.json())
+      .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
+      .catch(err => alert('Sorry, cannot find that ingredient, try another one!'))
+  })
+
+
+  showMeCocktailsBtn.addEventListener('click', e => {
+    const ingredientForm = document.querySelector("input[name = 'ingredient']")
+
+    e.preventDefault()
+
+    let ensureCapital = ingredientForm.value.charAt(0).toUpperCase() + ingredientForm.value.slice(1)
+
+    if (ensureCapital.includes('berry') === true && ensureCapital.includes(' ') !== false) {
       ensureCapital = ensureCapital.replace('berry', "berries")
     }
 
@@ -35,7 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (ensureCapital.includes(' ') === true) {
-      ensureCapital = ensureCapital.replace(' ', "_")
+      ensureCapital = ensureCapital.replaceAll(' ', "_")
+      console.log(ensureCapital)
     }
 
     fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + ensureCapital)
@@ -198,7 +220,7 @@ function handleLike(e) {
 }
 function findBySpirit(e) {
   console.log(e.target.value)
-  const getCocktailChildren = document.querySelectorAll('div.card')
+
 
   if (e.target.value === 'Non_Alcoholic') {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=' + e.target.value)
@@ -211,3 +233,5 @@ function findBySpirit(e) {
       .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
   }
 }
+
+
