@@ -51,8 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ensureCapital = 'Tonic_Water'
     } else if (ensureCapital.includes('Soda' === true)) {
       ensureCapital = 'Soda_Water'
-    } else if (ensureCapital.includes('Sparkling')) {
-      ensureCapital = 'Sparkling_Water'
     }
 
     if (ensureCapital.includes(' ') === true) {
