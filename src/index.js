@@ -138,7 +138,8 @@ function createDrinkCard(drink) {
   Drink Type: ${drink.strCategory}
   <p>${drink.strAlcoholic} </p>
   <img src = '${drink.strDrinkThumb}' class='cocktail-avatar'>
-  <br></br>
+  <br>
+ 
  `
 
   //btn ELs

@@ -1,4 +1,5 @@
 body {
+
   margin: 0;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background-color: #02223fcc;
@@ -34,7 +35,24 @@ label {
   justify-content: center;
 }
 
+.container-selection {
+  justify-self: right;
+  font-size: larger;
+  text-align: center;
+  color: rgb(102, 40, 4);
+  text-shadow: 3px 4px #140d27;
+  border: rgb(180, 54, 3) solid 1px;
+  padding: 1rem;
+  width: auto;
+  height: fit-content;
 
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 3px 4px #211c2e;
+  background-color: rgba(0, 0, 0, 0.377);
+
+
+}
 
 .card {
   justify-items: center;
@@ -90,7 +108,7 @@ button:hover {
 }
 
 .container {
-  justify-self: center;
+  justify-self: right;
   font-size: larger;
   text-align: center;
   color: rgb(102, 40, 4);
