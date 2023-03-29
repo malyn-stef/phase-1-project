@@ -27,14 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     e.preventDefault()
 
-    let ensureCapital = cocktailForm.value.charAt(0).toUpperCase() + cocktailForm.value.slice(1)
+    let ensureCocktail = cocktailForm.value
 
     // verify user input can be used in API
-    if (ensureCapital.includes(' ') === true) {
-      ensureCapital = ensureCapital.replaceAll(' ', "_")
+    if (ensureCocktail.includes(' ') === true) {
+      ensureCocktail = ensureCocktail.replaceAll(' ', "_")
     }
 
-    fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + ensureCapital)
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + ensureCocktail)
       .then(res => res.json())
       .then(someDrink => someDrink['drinks'].forEach(drink => createDrinkCard(drink)))
       .catch(err => alert('Sorry, cannot find that cocktail, try another one!'))
@@ -49,26 +49,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     e.preventDefault()
 
-    let ensureCapital = ingredientForm.value.charAt(0).toUpperCase() + ingredientForm.value.slice(1)
+    let ensureCocktail = ingredientForm.value
     //Verify user input
 
-    if (ensureCapital.includes('berry') === true && ensureCapital.includes(' ') === false) {
-      ensureCapital = ensureCapital.replace('berry', "berries")
-    }
-    console.log(ensureCapital)
-
-    if (ensureCapital.includes('Tonic') === true) {
-      ensureCapital = 'Tonic_Water'
-    } else if (ensureCapital.includes(' water' === true)) {
-      ensureCapital = ensureCapital + '_Water'
+    if (ensureCocktail.includes('berry') === true && ensureCocktail.includes(' ') === false) {
+      ensureCocktail = ensureCocktail.replace('berry', "berries")
     }
 
-    if (ensureCapital.includes(' ') === true) {
-      ensureCapital = ensureCapital.replaceAll(' ', "_")
+    if (ensureCocktail.includes('Tonic') === true) {
+      ensureCocktail = 'Tonic_Water'
+    } else if (ensureCocktail.includes(' water' === true)) {
+      ensureCocktail = ensureCocktail + '_Water'
+    }
+
+    if (ensureCocktail.includes(' ') === true) {
+      ensureCocktail = ensureCocktail.replaceAll(' ', "_")
 
     }
 
-    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + ensureCapital)
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + ensureCocktail)
       .then(res => res.json())
       .then(someDrink => someDrink['drinks'].forEach(drink => getAllDrinkInfoFromId(drink['idDrink'])))
       .catch(err => alert('Sorry, cannot find that ingredient, try another one!'))
